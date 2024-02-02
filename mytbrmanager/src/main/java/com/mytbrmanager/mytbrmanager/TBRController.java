@@ -122,8 +122,19 @@ public class TBRController {
     }
     
 
-    
+    //CurrentlyReading
+    @PostMapping("addToCurrentlyReading")
+    public CurrentlyReading createCurrentlyReading(@RequestBody CurrentlyReading currentlyReading) {
+        CurrentlyReading currentlyReadingBook = this.currentlyReadingRepository.save(currentlyReading);     
+        return currentlyReadingBook;
+    }
 
+    //Books Read
+    @PostMapping("addToBooksRead")
+    public BooksRead createBooksRead(@RequestBody BooksRead bookRead) {
+        BooksRead bookFininshedReadng = this.booksReadRepository.save(bookRead);     
+        return bookFininshedReadng;
+    }
 
     // @GetMapping("greeting")
     // public String HelloWorld() {
