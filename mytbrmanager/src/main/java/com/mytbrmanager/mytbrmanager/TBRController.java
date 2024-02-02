@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import java.time.LocalDate;
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 
 
@@ -110,8 +112,14 @@ public class TBRController {
     
 
 
+    /*Post Mappings */
+    //Currently Reading
 
-
+    @PostMapping("addBooks")
+    public TBR createBooks(@RequestBody TBR books) {
+        TBR newBooks = this.bookRepository.save(books);     
+        return newBooks;
+    }
 
     // @GetMapping("greeting")
     // public String HelloWorld() {
