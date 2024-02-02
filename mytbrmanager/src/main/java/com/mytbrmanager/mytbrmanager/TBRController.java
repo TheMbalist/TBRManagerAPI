@@ -121,7 +121,6 @@ public class TBRController {
         return newBook;
     }
     
-
     //CurrentlyReading
     @PostMapping("addToCurrentlyReading")
     public CurrentlyReading createCurrentlyReading(@RequestBody CurrentlyReading currentlyReading) {
