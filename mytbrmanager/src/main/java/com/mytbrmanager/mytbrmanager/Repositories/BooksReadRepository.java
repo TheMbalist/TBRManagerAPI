@@ -15,6 +15,12 @@ import java.time.LocalDate;
 public interface BooksReadRepository extends CrudRepository<BooksRead, Long>{
     
     List<BooksRead> findByBook(TBR BOOKID);
-    List<BooksRead> findByRating(int Rating);
+    List<BooksRead> findByRating(Integer rating);
+    List<BooksRead> findByRatingGreaterThan(Integer rating);
+    List<BooksRead> findByRatingLessThan(Integer rating);
+    List<BooksRead> findByDateFinishedAndRatingGreaterThan(LocalDate date_finished,Integer rating);
+    List<BooksRead> findByDateFinishedAndRatingLessThan(LocalDate date_finished,Integer rating);
     List<BooksRead> findByDateFinished(LocalDate date_finished);
+    List<BooksRead> findByDateFinishedLessThan(LocalDate date_finished);
+    List<BooksRead> findByDateFinishedGreaterThan(LocalDate date_finished);
 }

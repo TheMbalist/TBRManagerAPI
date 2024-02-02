@@ -19,7 +19,7 @@ import jakarta.persistence.TemporalType;
 import lombok.AllArgsConstructor;
 
 @Entity
-@Table(name="TBRManager")
+@Table(name="BooksRead")
 @AllArgsConstructor
 public class BooksRead {
     
