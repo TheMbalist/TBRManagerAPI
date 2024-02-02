@@ -17,6 +17,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+
 
 
 @RestController
@@ -110,16 +113,17 @@ public class TBRController {
         return this.currentlyReadingRepository.findByDateAdded(dateAdded);
     }
     
-
-
-    /*Post Mappings */
-    //Currently Reading
-
+    /*Create Mappings */
+    //TBR
     @PostMapping("addBooks")
-    public TBR createBooks(@RequestBody TBR books) {
-        TBR newBooks = this.bookRepository.save(books);     
-        return newBooks;
+    public TBR createBooks(@RequestBody TBR book) {
+        TBR newBook = this.bookRepository.save(book);     
+        return newBook;
     }
+    
+
+    
+
 
     // @GetMapping("greeting")
     // public String HelloWorld() {
