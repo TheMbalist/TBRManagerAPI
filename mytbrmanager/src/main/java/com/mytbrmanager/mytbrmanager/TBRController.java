@@ -15,6 +15,9 @@ import java.time.LocalDate;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+
 
 
 @RestController
@@ -108,9 +111,15 @@ public class TBRController {
         return this.currentlyReadingRepository.findByDateAdded(dateAdded);
     }
     
+    /*Create Mappings */
+    @PostMapping("addBooks")
+    public TBR createBooks(@RequestBody TBR book) {
+        TBR newBook = this.bookRepository.save(book);     
+        return newBook;
+    }
+    
 
-
-
+    //
 
 
     // @GetMapping("greeting")
