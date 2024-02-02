@@ -1,6 +1,10 @@
 package com.mytbrmanager.mytbrmanager.Entites;
 
-import java.sql.Date;
+
+
+import java.time.LocalDate;
+
+
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -10,6 +14,8 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
 import lombok.AllArgsConstructor;
 
 @Entity
@@ -29,7 +35,8 @@ public class BooksRead {
     private TBR book;
 
     @Column(name="Date_Finished")
-    private Date date_finished;
+    @Temporal(TemporalType.DATE)
+    private LocalDate date_finished;
 
     @Column(name="Rating")
     private Integer rating;
@@ -50,11 +57,11 @@ public class BooksRead {
         this.book = book;
     }
 
-    public Date getDate_finished() {
+    public LocalDate getDate_finished() {
         return date_finished;
     }
 
-    public void setDate_finished(Date date_finished) {
+    public void setDate_finished(LocalDate date_finished) {
         this.date_finished = date_finished;
     }
 
