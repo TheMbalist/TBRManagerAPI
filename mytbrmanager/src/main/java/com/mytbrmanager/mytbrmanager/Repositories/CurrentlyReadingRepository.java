@@ -11,7 +11,7 @@ import java.time.LocalDate;
 @Repository
 public interface CurrentlyReadingRepository extends CrudRepository<CurrentlyReading, Long> {
 
-    List<CurrentlyReading> findByDate_added(LocalDate date_added);
+    List<CurrentlyReading> findByDateAdded(LocalDate date_added);
 
     
 }

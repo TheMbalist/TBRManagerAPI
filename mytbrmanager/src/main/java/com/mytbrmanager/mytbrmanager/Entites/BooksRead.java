@@ -36,7 +36,7 @@ public class BooksRead {
 
     @Column(name="Date_Finished")
     @Temporal(TemporalType.DATE)
-    private LocalDate date_finished;
+    private LocalDate dateFinished;
 
     @Column(name="Rating")
     private Integer rating;
@@ -58,11 +58,11 @@ public class BooksRead {
     }
 
     public LocalDate getDate_finished() {
-        return date_finished;
+        return dateFinished;
     }
 
     public void setDate_finished(LocalDate date_finished) {
-        this.date_finished = date_finished;
+        this.dateFinished = date_finished;
     }
 
     public int getRating() {

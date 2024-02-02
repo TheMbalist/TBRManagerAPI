@@ -31,7 +31,7 @@ public class CurrentlyReading {
 
      @Column(name="Date_Added")
     @Temporal(TemporalType.DATE) 
-    private LocalDate date_added;
+    private LocalDate dateAdded;
 
     public Long getId() {
         return id;
@@ -42,11 +42,11 @@ public class CurrentlyReading {
     }
 
     public LocalDate getDate_added() {
-        return date_added;
+        return dateAdded;
     }
 
     public void setDate_added(LocalDate date_added) {
-        this.date_added = date_added;
+        this.dateAdded = date_added;
     }
 
 }
