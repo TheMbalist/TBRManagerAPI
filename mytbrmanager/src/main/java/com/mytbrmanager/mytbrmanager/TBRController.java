@@ -3,6 +3,7 @@ package com.mytbrmanager.mytbrmanager;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.mytbrmanager.mytbrmanager.Entites.BooksRead;
+import com.mytbrmanager.mytbrmanager.Entites.CurrentlyReading;
 import com.mytbrmanager.mytbrmanager.Entites.TBR;
 import com.mytbrmanager.mytbrmanager.Repositories.BooksReadRepository;
 import com.mytbrmanager.mytbrmanager.Repositories.CurrentlyReadingRepository;
@@ -51,7 +52,6 @@ public class TBRController {
     }
     
     //Books Read
-
     @GetMapping("booksRead")
     public Iterable<BooksRead> getBooksRead() {
         return this.booksReadRepository.findAll();
@@ -97,7 +97,17 @@ public class TBRController {
     
 //http://localhost:8080/tbr/booksRead/dateFinished?Date_Finished=2023-12-23&Rating=5
     
-
+    //Currently Reading
+    @GetMapping("currentlyReading")
+    public Iterable<CurrentlyReading> getCurrentlyReading() {
+        return this.currentlyReadingRepository.findAll();
+    }
+    
+    @GetMapping("currentlyReading/date?Date_Added={dateAdded}")
+    public Iterable<CurrentlyReading> getCurrentlyReadingByDateAdded(@RequestParam (name="Date_Added", required = false) LocalDate dateAdded) {
+        return this.currentlyReadingRepository.findByDateAdded(dateAdded);
+    }
+    
 
 
 
