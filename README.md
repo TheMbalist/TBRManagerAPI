@@ -1,4 +1,4 @@
-<h1>TBRMAnagerAPI<h1>
+<h1>TBRManagerAPI<h1>
 <h2>Project Description</h2>
 <p>This is a project I've worked on, with inspiration from the Goodreads application, to practice creating REST APIs using Spring and source control using Git and Github. This project is a very basic project that manages a To Be Read (hereafter referred to as TBR) list. A user would be allowed to store all the books they have collected/bought. They can then 'mark' the book as currently reading which will store the current date or the user can update the date to the date they choose. The user can then mark the book as Read and they can rate the book out of five, the date they finish reading the book is also stored with either the current date or the user's updated date.</p>
 
