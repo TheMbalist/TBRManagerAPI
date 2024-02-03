@@ -10,7 +10,7 @@ import java.util.List;
 @Repository
 public interface TBRRepository extends CrudRepository<TBR, Long>{
     
-    List<TBR> findByID(Long iD);
+   
     List<TBR> findByAuthor(String author);
     List<TBR> findByTitle(String title);
 }

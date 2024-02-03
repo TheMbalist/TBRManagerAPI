@@ -26,10 +26,11 @@ public class CurrentlyReading {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name="BOOKID")
+    @JoinColumn(name="ID")
     private TBR bookid;
 
-     @Column(name="Date_Added")
+   
+    @Column(name="Date_Added")
     @Temporal(TemporalType.DATE) 
     private LocalDate dateAdded;
 
@@ -39,6 +40,14 @@ public class CurrentlyReading {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public TBR getBookid() {
+        return bookid;
+    }
+
+    public void setBookid(TBR bookid) {
+        this.bookid = bookid;
     }
 
     public LocalDate getDate_added() {

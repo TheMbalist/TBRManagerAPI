@@ -12,13 +12,16 @@ import com.mytbrmanager.mytbrmanager.Repositories.TBRRepository;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.time.LocalDate;
+import java.util.Optional;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+
+
 
 
 
@@ -135,6 +138,83 @@ public class TBRController {
         return bookFininshedReadng;
     }
 
+    
+
+    /*Put Mappings */
+    //Book List
+    @PutMapping("books/{id}")
+    public TBR updateBooks(@PathVariable("id")Long id, @RequestBody TBR book) {
+
+        Optional<TBR> bookToUpdateOptional = this.bookRepository.findById(id);
+        if(!bookToUpdateOptional.isPresent()){
+            return null;};
+
+        TBR bookToUpdate = bookToUpdateOptional.get();
+
+        if(book.getAuthor() != null){
+            bookToUpdate.setAuthor(book.getAuthor());
+        }
+
+        if(book.getTitle() != null){
+            bookToUpdate.setTitle(book.getTitle());
+        }
+
+        TBR updatedBook = this.bookRepository.save(bookToUpdate);
+
+        return updatedBook;
+    }
+
+    //Currently Reading
+    @PutMapping("currentlyReading/{id}")
+    public CurrentlyReading updatCurrentlyReading(@PathVariable ("id") Long id, @RequestBody CurrentlyReading bookCurrentlyReading,  @RequestBody TBR book) {
+        Optional<CurrentlyReading> currentlyReadingOptional = this.currentlyReadingRepository.findById(id);
+
+        if(!currentlyReadingOptional.isPresent()){
+            return null;
+        }
+       
+
+        CurrentlyReading currentlyReadingToUpdate = currentlyReadingOptional.get();
+
+        if(bookCurrentlyReading.getDate_added() != null){
+            currentlyReadingToUpdate.setDate_added(bookCurrentlyReading.getDate_added());
+        }
+
+        if (bookCurrentlyReading.getBookid().getID() != null) {
+            currentlyReadingToUpdate.setBookid(bookCurrentlyReading.getBookid());
+        }
+
+        CurrentlyReading updatedCurrentlyReading = this.currentlyReadingRepository.save(currentlyReadingToUpdate);
+        
+        return updatedCurrentlyReading;
+    }
+
+    //Book Read
+    @PutMapping("booksRead/{id}")
+    public BooksRead updateBooksRead(@PathVariable ("id") Long id, @RequestBody BooksRead bookRead) {
+        Optional<BooksRead> booksReadOptional = this.booksReadRepository.findById(id);
+        if(!booksReadOptional.isPresent()){
+            return null;
+        }
+
+        BooksRead bookReadToUpdate = booksReadOptional.get();
+
+        if(bookRead.getBook().getID() != null){
+            bookReadToUpdate.setBook(bookRead.getBook());
+        }
+
+        if(bookRead.getDate_finished() != null){
+            bookReadToUpdate.setDate_finished(bookRead.getDate_finished());
+        }
+
+        if(bookRead.getRating() != null){
+            bookReadToUpdate.setRating(bookRead.getRating());
+        }
+
+        BooksRead updatedBookRead = this.booksReadRepository.save(bookReadToUpdate);
+        
+        return updatedBookRead;
+    }
     // @GetMapping("greeting")
     // public String HelloWorld() {
     //     return "Hello World";

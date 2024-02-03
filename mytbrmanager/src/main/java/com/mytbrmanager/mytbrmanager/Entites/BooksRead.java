@@ -65,11 +65,11 @@ public class BooksRead {
         this.dateFinished = date_finished;
     }
 
-    public int getRating() {
+    public Integer getRating() {
         return rating;
     }
 
-    public void setRating(int rating) {
+    public void setRating(Integer rating) {
         this.rating = rating;
     }
 
