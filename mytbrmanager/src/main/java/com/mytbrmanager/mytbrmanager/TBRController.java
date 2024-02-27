@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import java.time.LocalDate;
 import java.util.Optional;
 
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -48,13 +49,13 @@ public class TBRController {
        return this.bookRepository.findAll();
     }
     
-    @GetMapping("books/author")
+    @GetMapping("books/author?Author={author}")
     public Iterable<TBR> getBooksByAuthor(@RequestParam(name= "Author", required = false) String author) {
        return this.bookRepository.findByAuthor(author);
     }
     
 
-    @GetMapping("books/title")
+    @GetMapping("books/title?Title={title}")
     public Iterable<TBR> getBooksByTitle(@RequestParam(name= "Title", required = false) String title) {
        return this.bookRepository.findByTitle(title);
     }
@@ -116,7 +117,7 @@ public class TBRController {
         return this.currentlyReadingRepository.findByDateAdded(dateAdded);
     }
     
-    /*Create Mappings */
+    /*Post Mappings */
     //TBR
     @PostMapping("addBooks")
     public TBR createBooks(@RequestBody TBR book) {
@@ -215,6 +216,52 @@ public class TBRController {
         
         return updatedBookRead;
     }
+
+    /*Delete Mappings */
+    @DeleteMapping("/books/delete/{id}")
+    public TBR deleteBooks(@PathVariable("id") Long id){
+
+        Optional<TBR> bookToDeleteOptional = this.bookRepository.findById(id);
+        if(!bookToDeleteOptional.isPresent()){
+            return null;
+        }
+
+        TBR bookToDelete = bookToDeleteOptional.get();
+        this.bookRepository.delete(bookToDelete);
+
+        return bookToDelete;
+    }
+
+    @DeleteMapping("/currentlyReading/delete/{id}")
+    public CurrentlyReading deleteCurrentlyReadingBooks(@PathVariable("id") Long id){
+
+        Optional<CurrentlyReading> bookToDeleteOptional = this.currentlyReadingRepository.findById(id);
+        if(!bookToDeleteOptional.isPresent()){
+            return null;
+        }
+
+        CurrentlyReading bookToDelete = bookToDeleteOptional.get();
+        this.currentlyReadingRepository.delete(bookToDelete);
+
+        return bookToDelete;
+    }
+
+    @DeleteMapping("/booksRead/delete/{id}")
+    public BooksRead deleteReadBooks(@PathVariable("id") Long id){
+
+        Optional<BooksRead> bookToDeleteOptional = this.booksReadRepository.findById(id);
+        if(!bookToDeleteOptional.isPresent()){
+            return null;
+        }
+
+        BooksRead bookToDelete = bookToDeleteOptional.get();
+        this.booksReadRepository.delete(bookToDelete);
+
+        return bookToDelete;
+    }
+
+
+
     // @GetMapping("greeting")
     // public String HelloWorld() {
     //     return "Hello World";
