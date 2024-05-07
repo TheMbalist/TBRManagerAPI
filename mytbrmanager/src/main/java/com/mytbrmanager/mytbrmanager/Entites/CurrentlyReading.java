@@ -26,7 +26,7 @@ public class CurrentlyReading {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name="ID")
+    @JoinColumn(name="BookID", referencedColumnName="ID", insertable=false, updatable=false)
     private TBR bookid;
 
    

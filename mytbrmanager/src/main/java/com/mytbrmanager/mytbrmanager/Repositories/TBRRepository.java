@@ -13,4 +13,5 @@ public interface TBRRepository extends CrudRepository<TBR, Long>{
    
     List<TBR> findByAuthor(String author);
     List<TBR> findByTitle(String title);
+    ;
 }

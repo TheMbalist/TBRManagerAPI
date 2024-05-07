@@ -12,6 +12,7 @@ import com.mytbrmanager.mytbrmanager.Repositories.TBRRepository;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -120,8 +121,11 @@ public class TBRController {
     /*Post Mappings */
     //TBR
     @PostMapping("addBooks")
-    public TBR createBooks(@RequestBody TBR book) {
+    public TBR createBooks(@RequestBody TBR book,@RequestParam(name= "Title", required = false) String title,@RequestParam(name= "Author", required = false) String author ) {
+        
+
         TBR newBook = this.bookRepository.save(book);     
+        
         return newBook;
     }
     
@@ -141,7 +145,7 @@ public class TBRController {
 
     
 
-    /*Put Mappings */
+    /*Put Mappings*/
     //Book List
     @PutMapping("books/{id}")
     public TBR updateBooks(@PathVariable("id")Long id, @RequestBody TBR book) {
@@ -259,7 +263,6 @@ public class TBRController {
 
         return bookToDelete;
     }
-
 
 
     // @GetMapping("greeting")
